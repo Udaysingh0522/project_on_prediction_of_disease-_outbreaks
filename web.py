@@ -5,7 +5,9 @@ from streamlit_option_menu import option_menu
 
 st.set_page_config(page_title='Prediction of Disease Outbreaks',
                    layout='wide',
-                   page_icon='Doctor')
+                   page_icon='🩺')
+
+working_dir =os.path.dirname(os.path.abspath(__file__))
 diabetes_model = pickle.load(open(r"J:\outbriks\saved_models\diabetes_model.sav",'rb'))
 heart_model = pickle.load(open(r"J:\outbriks\saved_models\heart_model.sav",'rb'))
 parkinsons_model = pickle.load(open(r"J:\outbriks\saved_models\parkinsons_model.sav",'rb'))
@@ -37,7 +39,7 @@ if selected == 'Diabetes Prediction':
     diab_diagnosis =''
     if st.button('Diabetes Test Result'):
         user_input=[Pregnancies,Glucose,Bloodpressure,SkinThickness,Insulin,BMI,DiabetesPedigreeFunction,Age]
-        user_input=[float(x)for x in user_input]
+        user_input=[float (x) for x in user_input]
         diab_prediction= diabetes_model.predict([user_input])
         if diab_prediction[0]==1:
             diab_diagnosis='The Preson Is Diabetic'
